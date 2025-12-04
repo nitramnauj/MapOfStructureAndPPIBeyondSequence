@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 distancias = [5,6,7,8,9]
-distancias = [6]
 laterales = ['','No']
 
 muestras = ['full','rand','synt']
@@ -45,3 +44,4 @@ for d in distancias:
     #plt.savefig(f'angleDistribution_d{d}.png')
     plt.show()
     plt.clf()
+
