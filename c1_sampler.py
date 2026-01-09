@@ -10,6 +10,8 @@ nombres = ['d5LatN0','d5NoLatN0',
            'd8LatN0','d8NoLatN0',
            'd9LatN0','d9NoLatN0']
 
+nombres = ['d7NoLatN0']
+
 for name in nombres:
 
     df = pd.read_csv(name+'.csv')
@@ -42,4 +44,5 @@ for name in nombres:
             print(','.join(map(str,df.loc[i].values)),file=output_subset)
         output_subset.close()
     output_averages.close()
+
 
