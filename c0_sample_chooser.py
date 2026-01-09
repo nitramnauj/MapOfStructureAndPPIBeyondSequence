@@ -9,6 +9,8 @@ nombres = ['d5LatN0','d5NoLatN0',
            'd8LatN0','d8NoLatN0',
            'd9LatN0','d9NoLatN0']
 
+nombres = ['d7NoLatN0']
+
 for name in nombres:
     archivo = name+'.csv'  # Nombre de tu archivo CSV
 
@@ -65,4 +67,5 @@ for name in nombres:
             print(str(M)+','+str(S)+','+str(d),file=salida)
             print(str(M)+','+str(S)+','+str(d))
     salida.close()
+
 
