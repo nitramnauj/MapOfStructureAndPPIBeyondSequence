@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Configuración
+# Los valores M y S deben coincidir con los de c0_sample_chooser.py
 
 nombres = ['d5LatN0','d5NoLatN0',
            'd6LatN0','d6NoLatN0',
@@ -15,8 +16,8 @@ for name in nombres:
     datos_numericos = df.iloc[:, 1:-1]  # Excluye primera y última columna
     df["SUM"] = datos_numericos.sum(axis=1)
 
-    M = 6000              # Cantidad de vectores (debe ser < N)
-    S = 7500                 # Número de subconjuntos a generar
+    M = 2000              # Cantidad de vectores (debe ser < N)
+    S = 2500                 # Número de subconjuntos a generar
     np.random.seed(42)  # Para reproducibilidad
     output_averages = open('Samples_Random/size'+name+'/averages_'+name+'.csv','w')
     to_print = 'FILE,av_RCC1,av_RCC2,av_RCC3,av_RCC4,av_RCC5,av_RCC6,av_RCC7,av_RCC8,av_RCC9,av_RCC10,av_RCC11,av_RCC12,av_RCC13,'
@@ -41,3 +42,4 @@ for name in nombres:
             print(','.join(map(str,df.loc[i].values)),file=output_subset)
         output_subset.close()
     output_averages.close()
+
