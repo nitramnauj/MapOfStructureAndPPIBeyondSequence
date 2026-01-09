@@ -3,8 +3,16 @@ import pandas as pd
 import numpy as np
 import csv
 
+'''
+Este código calcula todos los ángulos posibles en una lista de vectores.
+Va construyendo un histograma sin "recordar" todos los ángulos,
+	pues los va colocando en el bin correspondiente conforme los calcula.
+Si el ángulo es menor que 5 grados,
+	los considera paralelos y los imprime en un archivo de salida.
+'''
+
 def calcular_angulo(v1, v2):
-	"""Calcula el ángulo en grados entre dos vectores usando producto punto."""
+	#Calcula el ángulo en grados entre dos vectores usando producto punto.
 	dot = np.dot(v1, v2)
 	norm_v1 = np.linalg.norm(v1)
 	norm_v2 = np.linalg.norm(v2)
@@ -63,7 +71,7 @@ for s in range(samples[0],samples[1]+1):
 				if 0 <= angulo <= max_value:
 					# Buscamos el índice de bin para colocarlo
 					bin_index = int(angulo // bin_size)
-					# Caso especial: max_value va en el último bin
+					# max_value va en el último bin
 					if angulo == max_value:
 						bin_index = len(bins) - 1
 					counts[bin_index] += 1/(samples[1]-samples[0]+1)
