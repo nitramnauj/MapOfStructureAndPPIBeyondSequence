@@ -6,6 +6,10 @@ laterales = ['','No']
 
 muestras = ['full','rand','synt']
 
+# To test:
+distancias = [7]
+laterales = ['No']
+
 for d in distancias:
     for s in laterales:
         for m in muestras:
@@ -44,4 +48,5 @@ for d in distancias:
     #plt.savefig(f'angleDistribution_d{d}.png')
     plt.show()
     plt.clf()
+
 
