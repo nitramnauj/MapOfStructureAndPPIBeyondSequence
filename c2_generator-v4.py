@@ -115,8 +115,8 @@ averages = ['d5LatN0','d5NoLatN0',
             'd8LatN0','d8NoLatN0',
             'd9LatN0','d9NoLatN0']
 
-poblacion = 6000
-muestras = 7500
+poblacion = 2000
+muestras = 2500
 
 #log = open('log.txt','w')
 for name in range(len(averages)):
