@@ -11,6 +11,8 @@ Si el ángulo es menor que 5 grados,
 	los considera paralelos y los imprime en un archivo de salida.
 '''
 
+# To test, input "d7NoLat,Random" or "d7NoLat,Synthetic"
+
 def calcular_angulo(v1, v2):
 	#Calcula el ángulo en grados entre dos vectores usando producto punto.
 	dot = np.dot(v1, v2)
