@@ -115,6 +115,8 @@ averages = ['d5LatN0','d5NoLatN0',
             'd8LatN0','d8NoLatN0',
             'd9LatN0','d9NoLatN0']
 
+averages = ['d7NoLatN0']
+
 poblacion = 2000
 muestras = 2500
 
