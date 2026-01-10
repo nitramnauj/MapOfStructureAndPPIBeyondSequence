@@ -5,6 +5,8 @@ import csv
 import os
 
 input_name = "d7NoLatN0.csv"
+#muestra_size = [1,9,10,11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
+sample_size = [11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
 
 # Revisar si existe el directorio de salida
 dir_name = "Angles"
@@ -56,9 +58,7 @@ def seleccionar_pares_y_angulos(num_pares, archivo_salida="Angles/pares_angulos.
             count += 1
 
 import time
-muestra_size = [1,9,10,11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
-muestra_size = [11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
-for i in muestra_size:
+for i in sample_size:
     begin = time.time()
     seleccionar_pares_y_angulos(10**i,archivo_salida="Angles/"+input_name.split('.')[0]+"_angulos_"+str(i)+".csv")
     end = time.time()
