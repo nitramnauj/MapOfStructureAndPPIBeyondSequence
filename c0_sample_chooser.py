@@ -3,15 +3,15 @@ import numpy as np
 
 # Configuración
 
-nombres = ['d5LatN0','d5NoLatN0',
+files = ['d5LatN0','d5NoLatN0',
            'd6LatN0','d6NoLatN0',
            'd7LatN0','d7NoLatN0',
            'd8LatN0','d8NoLatN0',
            'd9LatN0','d9NoLatN0']
 
-nombres = ['d7NoLatN0']
+files = ['d7NoLatN0']
 
-for name in nombres:
+for name in files:
     archivo = name+'.csv'  # Nombre de tu archivo CSV
 
     # Leer el archivo CSV (ignorando la primera y última columna como etiquetas)
@@ -67,5 +67,6 @@ for name in nombres:
             print(str(M)+','+str(S)+','+str(d),file=salida)
             print(str(M)+','+str(S)+','+str(d))
     salida.close()
+
 
 
