@@ -21,7 +21,7 @@ df = pd.read_csv(input_name+'N0.csv')
 etiquetas = df.iloc[:, 0].values
 
 # Tomar solo las columnas intermedias (ignorando primera y última que son etiquetas)
-data = df.iloc[:, 1:-1].values
+data = df.iloc[:, 1:-1].values # Estos son los vectores de todo el archivo
 n = len(data)
 
 def seleccionar_pares_y_angulos(num_pares, archivo_salida="Angulos/pares_angulos.csv"):
@@ -40,7 +40,7 @@ def seleccionar_pares_y_angulos(num_pares, archivo_salida="Angulos/pares_angulos
                 continue  # ya calculado, saltar
             
             vistos.add(par)
-            angulo = calcular_angulo(data[i], data[j])
+            angulo = calcular_angulo(data[i], data[j]) # Aquí calculamos el ángulo entre los vectores
             
             # imprimir conforme se calcula
             #print(f"Par ({i}, {j}) -> {etiquetas[i]} vs {etiquetas[j]}: {angulo:.2f}°")
@@ -49,7 +49,6 @@ def seleccionar_pares_y_angulos(num_pares, archivo_salida="Angulos/pares_angulos
             writer.writerow([etiquetas[i], etiquetas[j], f"{angulo:.2f}"])
             count += 1
 
-# Ejemplo: seleccionar 5 pares al azar y guardarlos
 import time
 muestra_size = [1,9,10,11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
 muestra_size = [11] # Esto calcula 10, 10^9, 10^10 y 10^11 angulos
