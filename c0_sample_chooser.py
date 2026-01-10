@@ -11,6 +11,15 @@ files = ['d5LatN0','d5NoLatN0',
 
 files = ['d7NoLatN0']
 
+# Descomentar las siguientes dos líneas para generar varios tipos de subconjuntos
+#sample_size = np.arange(1000,10500,500)              # Cantidad de vectores (debe ser < N)
+#subsets = np.arange(2000,11000,2000)                 # Número de subconjuntos a generar
+
+# Si se descomentan las 2 línes anteriores, se deben comentar las 2 siguientes
+# Esto genera 2500 muestras con 2000 vectores cada una
+sample_size = [2000]              # Cantidad de vectores (debe ser < N)
+subsets = [2500]                 # Número de subconjuntos a generar
+
 for name in files:
     archivo = name+'.csv'  # Nombre de tu archivo CSV
 
@@ -23,15 +32,6 @@ for name in files:
     promedios_totales = datos_numericos.mean()
     #print("\nPromedios de todas las columnas (dataset completo):")
     #print(promedios_totales.to_string())
-
-    # Descomentar las siguientes dos líneas para generar varios tipos de subconjuntos
-    #sample_size = np.arange(1000,10500,500)              # Cantidad de vectores (debe ser < N)
-    #subsets = np.arange(2000,11000,2000)                 # Número de subconjuntos a generar
-
-    # Si se descomentan las 2 línes anteriores, se deben comentar las 2 siguientes
-    # Esto genera 2500 muestras con 2000 vectores cada una
-    sample_size = [2000]              # Cantidad de vectores (debe ser < N)
-    subsets = [2500]                 # Número de subconjuntos a generar
 
     salida = open('salida_final_'+name+'.csv','a')
     print('M,S,d',file=salida)
@@ -67,6 +67,7 @@ for name in files:
             print(str(M)+','+str(S)+','+str(d),file=salida)
             print(str(M)+','+str(S)+','+str(d))
     salida.close()
+
 
 
 
