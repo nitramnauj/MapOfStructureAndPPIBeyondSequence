@@ -1,5 +1,7 @@
 # MapOfStructureAndPPIBeyondSequence
-Codes to reproduce cosine similarity network analysis.
+Codes to reproduce cosine similarity network analysis.<br />
+
+All random choosing has been fixed with a random seed (42) to ensure reproducibility.
 
 These codes work with .csv files formated as follows:
 
