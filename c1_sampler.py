@@ -1,26 +1,36 @@
 import pandas as pd
 import numpy as np
-
+import os
 # Configuración
 # Los valores M y S deben coincidir con los de c0_sample_chooser.py
 
-nombres = ['d5LatN0','d5NoLatN0',
+files = ['d5LatN0','d5NoLatN0',
            'd6LatN0','d6NoLatN0',
            'd7LatN0','d7NoLatN0',
            'd8LatN0','d8NoLatN0',
            'd9LatN0','d9NoLatN0']
 
-nombres = ['d7NoLatN0']
+files = ['d7NoLatN0']
 
-for name in nombres:
+M = 2000
+S = 2500
+
+# Crear directorios de salida
+dir_name = "Samples_Random"
+if not os.path.exists(dir_name):
+    os.makedirs(dir_name)
+
+for name in files:
+    dir_name = "Samples_Random/size"+name
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
 
     df = pd.read_csv(name+'.csv')
     datos_numericos = df.iloc[:, 1:-1]  # Excluye primera y última columna
     df["SUM"] = datos_numericos.sum(axis=1)
 
-    M = 2000              # Cantidad de vectores (debe ser < N)
-    S = 2500                 # Número de subconjuntos a generar
     np.random.seed(42)  # Para reproducibilidad
+
     output_averages = open('Samples_Random/size'+name+'/averages_'+name+'.csv','w')
     to_print = 'FILE,av_RCC1,av_RCC2,av_RCC3,av_RCC4,av_RCC5,av_RCC6,av_RCC7,av_RCC8,av_RCC9,av_RCC10,av_RCC11,av_RCC12,av_RCC13,'
     to_print += 'av_RCC14,av_RCC15,av_RCC16,av_RCC17,av_RCC18,av_RCC19,av_RCC20,av_RCC21,av_RCC22,av_RCC23,av_RCC24,av_RCC25,av_RCC26,'
@@ -44,5 +54,6 @@ for name in nombres:
             print(','.join(map(str,df.loc[i].values)),file=output_subset)
         output_subset.close()
     output_averages.close()
+
 
 
