@@ -24,14 +24,18 @@ This will create (if not already exists) an output directory named Angles, where
 To generate a number **S** of different samples for a \<input_file_name\> file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c1_sampler.py_.<br />
 To get the samples for different input files, change **files** list, without extension.<br />
 To get samples of different size, change **M** value.<br />
-To change the number of samples, change **S** value.
+To change the number of samples, change **S** value.<br />
 This will create **S** output files with **M** vectors each one. Also, it will create **S** output files with the average and standard deviation values for each one of the 26 \<RCC\> values.
 
 To generate a **M** synthetic vectors for each sample, just run _c2_generator-v4.py_.<br />
-This code takes the distribution of the 26 \<RCC\> values, and the sum of the corresponding 26 \<RCC\> values for a given vector in a sample, to generate a new synthetic vector.
-It also takes the corresponding _curves_ file into account, which describes the global distribution of vectors, not only the current sample.
+This code takes the distribution of the 26 \<RCC\> values, and the sum of the corresponding 26 \<RCC\> values for a given vector in a sample, to generate a new synthetic vector.<br />
+It also takes the corresponding _curves_ file into account, which describes the global distribution of vectors, not only the current sample.<br />
 To get the samples for different input files, change **averages** list, without extension.<br />
 To get samples of different size, change **M** value.<br />
-To change the number of samples, change **S** value.
+To change the number of samples, change **S** value.<br />
 This will create **S** output files with **M** synthetic vectors each one.
+
+To calculate the angles between all possible pairs inside all samples, run _c4_angleNhistoCalculator.py_ and input "d7NoLat,Random" or "d7NoLat,Synthetic", or the corresponding case you are testing.<br />
+This script doesn't save the angles, instead outputs a histogram of the values.<br />
+This script outputs a file, _pars_name.csv_, with the pairs of parallel angles in a given sample.
 
