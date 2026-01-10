@@ -1,6 +1,23 @@
 # Quinto código para ejecturar
 import numpy as np
 import pandas as pd
+import os
+
+averages = ['d5LatN0','d5NoLatN0',
+            'd6LatN0','d6NoLatN0',
+            'd7LatN0','d7NoLatN0',
+            'd8LatN0','d8NoLatN0',
+            'd9LatN0','d9NoLatN0']
+
+averages = ['d7NoLatN0']
+
+poblacion = 2000
+muestras = 2500
+
+# Crear directorios de salida
+dir_name = "Samples_Synthetic"
+if not os.path.exists(dir_name):
+    os.makedirs(dir_name)
 
 def curva(ne,c):
     a = c[0]
@@ -109,20 +126,13 @@ def massiveGenerator(case,elementos,fln,average_data,curve_settings):
 
     return rcc
 
-averages = ['d5LatN0','d5NoLatN0',
-            'd6LatN0','d6NoLatN0',
-            'd7LatN0','d7NoLatN0',
-            'd8LatN0','d8NoLatN0',
-            'd9LatN0','d9NoLatN0']
-
-averages = ['d7NoLatN0']
-
-poblacion = 2000
-muestras = 2500
-
 #log = open('log.txt','w')
 for name in range(len(averages)):
-    curvesFile = 'Curves/curvesFrom'+averages[name]+'.txt'
+    dir_name = 'Samples_Synthetic/size'+averages[name]
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    
+    curvesFile = 'curvesFrom'+averages[name]+'.txt'
     file = open(curvesFile, 'r')
     ajustes = []
     for line in file:
