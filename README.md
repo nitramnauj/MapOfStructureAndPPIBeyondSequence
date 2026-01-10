@@ -21,7 +21,9 @@ To use another file, change **input_name** variable to the corresponding file na
 To change the sample size, change the values inside **sample_size** list. Currently is 11, to calculate 10^11 pairs.<br />
 This will create (if not already exists) an output directory named Angles, where the output file is named \<input_file_name\>_angulos_n.csv, where **n** is the value in **sample_size**.
 
-To generate a number **S** of different samples for a \<input_file_name\>.csv file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c0_sample_chooser.py_.<br />
-To get the samples for different input files, change **files** list.<br />
-To get samples of different size, change **sample_size** value.<br />
-To change the number of samples, change **subsets** value.
+To generate a number **S** of different samples for a \<input_file_name\> file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c0_sample_chooser.py_.<br />
+To get the samples for different input files, change **files** list, without extension.<br />
+To get samples of different size, change **M** value.<br />
+To change the number of samples, change **S** value.
+This will create **S** output files with **M** vectors each one. Also, it will create **S** output files with the average and standard deviation values for each one of the 26 \<RCC\> values.
+
