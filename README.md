@@ -21,9 +21,17 @@ To use another file, change **input_name** variable to the corresponding file na
 To change the sample size, change the values inside **sample_size** list. Currently is 11, to calculate 10^11 pairs.<br />
 This will create (if not already exists) an output directory named Angles, where the output file is named \<input_file_name\>_angulos_n.csv, where **n** is the value in **sample_size**.
 
-To generate a number **S** of different samples for a \<input_file_name\> file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c0_sample_chooser.py_.<br />
+To generate a number **S** of different samples for a \<input_file_name\> file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c1_sampler.py_.<br />
 To get the samples for different input files, change **files** list, without extension.<br />
 To get samples of different size, change **M** value.<br />
 To change the number of samples, change **S** value.
 This will create **S** output files with **M** vectors each one. Also, it will create **S** output files with the average and standard deviation values for each one of the 26 \<RCC\> values.
+
+To generate a **M** synthetic vectors for each sample, just run _c2_generator-v4.py_.<br />
+This code takes the distribution of the 26 \<RCC\> values, and the sum of the corresponding 26 \<RCC\> values for a given vector in a sample, to generate a new synthetic vector.
+It also takes the corresponding _curves_ file into account, which describes the global distribution of vectors, not only the current sample.
+To get the samples for different input files, change **averages** list, without extension.<br />
+To get samples of different size, change **M** value.<br />
+To change the number of samples, change **S** value.
+This will create **S** output files with **M** synthetic vectors each one.
 
