@@ -10,10 +10,10 @@ PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14
 
 Where:
 \<PDBID\> is the string vector name, or the PDB chain for PDB structures.
-<RCC1>, \<RCC2\>, ..., <RCC26> are 26 numbers (integers for rcc collections).
-<C> is a string tag for the vector, or the CATH class for the corresponding protein domain.
+\<RCC1\>, \<RCC2\>, ..., \<RCC26\> are 26 numbers (integers for rcc collections).
+\<C\> is a string tag for the vector, or the CATH class for the corresponding protein domain.
 
-To get the angles between a sample of posible pairs of vectors in a <input_file_name>.csv file, just run _sampleAngles.py_.
+To get the angles between a sample of posible pairs of vectors in a \<input_file_name\>.csv file, just run _sampleAngles.py_.
 To use another file, change **input_name** variable to the corresponding file name. Currently is "d7NoLatN0.csv".
 To change the sample size, change the values inside **sample_size** list. Currently is 11, to calculate 10^11 pairs.
-This will create (if not already exists) an output directory named Angles, where the output file is named <input_file_name>_angulos_n.csv, where **n** is the value in **sample_size**.
+This will create (if not already exists) an output directory named Angles, where the output file is named \<input_file_name\>_angulos_n.csv, where **n** is the value in **sample_size**.
