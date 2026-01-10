@@ -9,8 +9,8 @@ PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14
 102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1
 
 Where:
-<PDBID> is the string vector name, or the PDB chain for PDB structures.
-<RCC1>, <RCC2>, ..., <RCC26> are 26 numbers (integers for rcc collections).
+\<PDBID\> is the string vector name, or the PDB chain for PDB structures.
+<RCC1>, \<RCC2\>, ..., <RCC26> are 26 numbers (integers for rcc collections).
 <C> is a string tag for the vector, or the CATH class for the corresponding protein domain.
 
 To get the angles between a sample of posible pairs of vectors in a <input_file_name>.csv file, just run _sampleAngles.py_.
