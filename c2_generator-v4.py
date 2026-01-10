@@ -11,13 +11,16 @@ averages = ['d5LatN0','d5NoLatN0',
 
 averages = ['d7NoLatN0']
 
-poblacion = 2000
-muestras = 2500
+M = 2000 # Population
+S = 2500 # Samples
 
 # Crear directorios de salida
 dir_name = "Samples_Synthetic"
 if not os.path.exists(dir_name):
     os.makedirs(dir_name)
+
+poblacion = M
+muestras = S
 
 def curva(ne,c):
     a = c[0]
