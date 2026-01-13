@@ -43,3 +43,12 @@ To find the vectors with at least one parallel, just run _atLeastOne.py_.<br />
 This script will output a file where each line is a vector which is parallel to another one in the input file.<br />
 To change the input and output files, change the **input_file** and **output_file** values.<br />
 To change the angular threshold value to consider a vector "parallel", change **angle** value.
+
+To find the pair of parallel vectors with the thershold used in the previous script, just run _fasterNetworker.py_.<br />
+This script will output a file named edges_<input_file>.txt<br />, where each line is an edge in a network of parallelism.<br />
+It could be run with whichever input file formated as follows:
+
+PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14,RCC15,RCC16,RCC17,RCC18,RCC19,RCC20,RCC21,RCC22,RCC23,RCC24,RCC25,RCC26,C<br />
+101mA00,2,1,7,0,13,0,5,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
+102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1<br />
+102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
