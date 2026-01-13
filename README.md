@@ -39,3 +39,7 @@ To calculate the angles between all possible pairs inside all samples, run _c4_a
 This script doesn't save the angles, instead outputs a histogram of the values.<br />
 This script outputs a file, _pars_name.csv_, with the pairs of parallel angles in a given sample.
 
+To find the vectors with at least one parallel, just run _atLeastOne.py_.<br />
+This script will output a file where each line is a vector which is parallel to another one in the input file.<br />
+To change the input and output files, change the **input_file** and **output_file** values.<br />
+To change the angular threshold value to consider a vector "parallel", change **angle** value.
