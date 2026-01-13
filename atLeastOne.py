@@ -10,7 +10,9 @@ if not os.path.exists(dir_name):
     os.makedirs(dir_name)
 
 output_file = './'+dir_name+'/withatleastone_d7NoLatN0.csv'
-threshold = np.cos(np.radians(5))  # Umbral para 5° (~0.9962)
+
+angle = 5
+threshold = np.cos(np.radians(angle))  # Umbral para 5° (~0.9962)
 report_interval = 1000  # Mostrar progreso cada 100 hallazgos
 
 # Leer archivo CSV (omitir primera y última columna como etiquetas)
