@@ -52,3 +52,6 @@ PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14
 101mA00,2,1,7,0,13,0,5,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
 102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1<br />
 102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
+
+To draw the network gotten with the previous script, just run _orgColorGCC.py_<br />.
+This will use _human_pbds.txt_, _musMusculus_pdbs.txt_ and _sCerevisiae_pdbs.txt_ as dictionaries to color the nodes with color depending of the species.<br />
