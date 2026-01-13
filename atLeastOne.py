@@ -4,7 +4,12 @@ import time
 
 # Configuración
 input_file = 'd7NoLatN0.csv'
-output_file = './d7NoLatN0/semiparalelos_d7NoLatN0.csv'
+
+dir_name = input_file.split('.')[0]
+if not os.path.exists(dir_name):
+    os.makedirs(dir_name)
+
+output_file = './'+dir_name+'/withatleastone_d7NoLatN0.csv'
 threshold = np.cos(np.radians(5))  # Umbral para 5° (~0.9962)
 report_interval = 1000  # Mostrar progreso cada 100 hallazgos
 
