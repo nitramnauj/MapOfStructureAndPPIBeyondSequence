@@ -58,3 +58,7 @@ This will use _human_pbds.txt_, _musMusculus_pdbs.txt_ and _sCerevisiae_pdbs.txt
 
 To know the number of different Classes, Architectures, Topologies and Homologous Superfamilies, just run _catherV3.py_.<br />
 This script uses _cath-domain-list.txt_ and edges_<input_file>.txt to label each PDBID with the corresponding CATH domain.
+
+To draw the network with color by class, just run _claColor.py_<br />.
+This script uses edges_<input_file>.txt to label each pair of nodes with their corresponding class as in CATH and colors them<br />.
+The output is a file with the edges and the classes for them, and a \<input_file\>_plot.png file.
