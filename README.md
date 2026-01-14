@@ -64,9 +64,15 @@ This script uses edges_<input_file>.txt to label each pair of nodes with their c
 The output is a file with the edges and the classes for them in a edges_<input_file>_classes.csv file, and a \<input_file\>_plot.png file.
 
 To find the Giant Connected Component (GCC), just runt _findGCC.py_.<br />
-This will output a GCC\_\<input_file\>.csv file, with only the edges of the GCC.
+This will output a GCC_\<input_file\>.csv file, with only the edges of the GCC.
 
 To know the number of edges for each node (its degree), just run _degreeCounter.py_.<br />
 This will output a file with the list of degrees, and how many nodes have such degree.<br />
 To fit to the degree distribution gotten with the previous script some exponential models, run _multiple.py_.<br />
 This will output the coefficients for the three models described in the main paper.
+
+To know the degree distribution by organism, just run _orgCounter.py_.<br />
+This script takes the edges_\<input_file\>.txt file and an organism list, such as _human_pdbs.txt_, to print for each node its degree and its Uniprot ID.
+
+To know the BioGrid counts for each protein, just run the _searchBioGrid.py_ script.<br />
+This will read the _BIOGRID-ALL-5.0.251.mitab.txt_ file and count how many interactors has certain uniprot. Then it will print them in an output fil.
