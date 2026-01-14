@@ -65,3 +65,8 @@ The output is a file with the edges and the classes for them, and a \<input_file
 
 To find the Giant Connected Component (GCC), just runt _findGCC.py_.<br />
 This will output a GCC\_\<input_file\>.csv file, with only the edges of the GCC.
+
+To know the number of edges for each node (its degree), just run _degreeCounter.py_.<br />
+This will output a file with the list of degrees, and how many nodes have such degree.<br />
+To fit to the degree distribution gotten with the previous script some exponential models, run _multiple.py_.<br />
+This will output the coefficients for the three models described in the main paper.
