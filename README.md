@@ -45,7 +45,7 @@ To change the input and output files, change the **input_file** and **output_fil
 To change the angular threshold value to consider a vector "parallel", change **angle** value.
 
 To find the pair of parallel vectors with the thershold used in the previous script, just run _fasterNetworker.py_.<br />
-This script will output a file named edges_<input_file>.txt<br />, where each line is an edge in a network of parallelism.<br />
+This script will output a file named edges_<input_file>.txt, where each line is an edge in a network of parallelism.<br />
 It could be run with whichever input file formated as follows:
 
 PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14,RCC15,RCC16,RCC17,RCC18,RCC19,RCC20,RCC21,RCC22,RCC23,RCC24,RCC25,RCC26,C<br />
@@ -53,5 +53,8 @@ PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14
 102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1<br />
 102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
 
-To draw the network gotten with the previous script, just run _orgColorGCC.py_<br />.
+To draw the network gotten with the previous script, just run _orgColorGCC.py_.<br />
 This will use _human_pbds.txt_, _musMusculus_pdbs.txt_ and _sCerevisiae_pdbs.txt_ as dictionaries to color the nodes with color depending of the species.<br />
+
+To know the number of different Classes, Architectures, Topologies and Homologous Superfamilies, just run _catherV3.py_.<br />
+This script uses _cath-domain-list.txt_ and edges_<input_file>.txt to label each PDBID with the corresponding CATH domain.
