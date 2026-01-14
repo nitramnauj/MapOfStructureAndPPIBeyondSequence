@@ -62,3 +62,6 @@ This script uses _cath-domain-list.txt_ and edges_<input_file>.txt to label each
 To draw the network with color by class, just run _claColor.py_<br />.
 This script uses edges_<input_file>.txt to label each pair of nodes with their corresponding class as in CATH and colors them<br />.
 The output is a file with the edges and the classes for them, and a \<input_file\>_plot.png file.
+
+To find the Giant Connected Component (GCC), just runt _findGCC.py_<br />.
+This will output a GCC\_\<input_file\>.csv file, with only the edges of the GCC.
