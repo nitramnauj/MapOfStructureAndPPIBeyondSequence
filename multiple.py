@@ -6,9 +6,7 @@ import warnings
 warnings.filterwarnings('ignore')  # Suprimir advertencias de convergencia
 
 def main(file_name):
-    # ===========================================
-    # 1. CARGAR Y PREPARAR DATOS
-    # ===========================================
+    # CARGAR Y PREPARAR DATOS
     try:
         datos = np.genfromtxt(file_name, delimiter=',')
         grados = datos[:, 0]
@@ -29,9 +27,7 @@ def main(file_name):
         print(f"Error cargando datos: {e}")
         return
 
-    # ===========================================
-    # 2. DEFINIR MODELOS
-    # ===========================================
+    # DEFINIR MODELOS
     def modelo_freeScale(x, a, b, c):
         return a * x**(-b) + c
 
@@ -41,9 +37,7 @@ def main(file_name):
     def modelo_triple_exponencial(x, a1, b1, a2, b2, a3, b3, c):
         return a1 * np.exp(-x*b1) + a2 *np.exp(-x*b2) + a3 * np.exp(-x*b3) + c
 
-    # ===========================================
-    # 3. FUNCIÓN PARA CALCULAR MÉTRICAS
-    # ===========================================
+    # FUNCIÓN PARA CALCULAR MÉTRICAS
     def calcular_metricas(y_real, y_pred):
         # Error Cuadrático Medio (MSE)
         mse = np.mean((y_real - y_pred) ** 2)
@@ -68,9 +62,7 @@ def main(file_name):
             'R²': r_squared
         }
 
-    # ===========================================
-    # 4. AJUSTAR MODELOS
-    # ===========================================
+    # AJUSTAR MODELOS
     resultados = {}
     x_ajuste = np.linspace(min(x), max(x), 100000)
 
@@ -143,9 +135,8 @@ def main(file_name):
     except Exception as e:
         print(f"Error en ajuste triple exponencial: {e}")
 
-    # ===========================================
-    # 5. COMPARACIÓN Y SELECCIÓN DEL MEJOR MODELO
-    # ===========================================
+
+    # COMPARACIÓN Y SELECCIÓN DEL MEJOR MODELO
     print("\n" + "="*50)
     print("COMPARACIÓN FINAL DE MODELOS")
     print("="*50)
@@ -164,9 +155,7 @@ def main(file_name):
 
     print(f"\nMEJOR MODELO: {mejor_modelo} (MSE más bajo)")
 
-    # ===========================================
-    # 6. GRAFICAR RESULTADOS
-    # ===========================================
+    # GRAFICAR RESULTADOS
     plt.figure(figsize=(14, 10))
 
     # Colores para cada modelo
@@ -201,9 +190,7 @@ def main(file_name):
     plt.tight_layout()
     plt.savefig('multiple_'+file_name.split('_')[1].split('.')[0]+'.png')
 
-    # ===========================================
-    # 7. GRÁFICA ADICIONAL: RESIDUALES
-    # ===========================================
+    # GRÁFICA ADICIONAL: RESIDUALES
     plt.figure(figsize=(14, 6))
 
     for i, (nombre, resultado) in enumerate(resultados.items()):
