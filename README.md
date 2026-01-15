@@ -72,7 +72,11 @@ To fit to the degree distribution gotten with the previous script some exponenti
 This will output the coefficients for the three models described in the main paper.
 
 To know the degree distribution by organism, just run _orgCounter.py_.<br />
-This script takes the edges_\<input_file\>.txt file and an organism list, such as _human_pdbs.txt_, to print for each node its degree and its Uniprot ID.
+This script takes the edges_\<input_file\>.txt file and an organism list, such as _human_pdbs.txt_, to print for each node its degree and its Uniprot ID in a degreeByNode_\<organism\>.csv file.
 
 To know the BioGrid counts for each protein, just run the _searchBioGrid.py_ script.<br />
-This will read the _BIOGRID-ALL-5.0.251.mitab.txt_ file and count how many interactors has certain uniprot. Then it will print them in an output fil.
+This will read the _BIOGRID-ALL-5.0.251.mitab.txt_ file and count how many interactors has certain uniprot. Then it will print them in an output file, _biogrid_by_uniprot.csv_.
+
+To calculate the degree distribution by organism, with consideration of the BioGrid counts, just run _degreeByNodeByOrg.py_.<br />
+This script will take the degreeByNode_\<organism\>.csv file and the _biogrid_by_uniprot.csv_ as inputs.<br />
+This will output the nodes, degree and uniprot for the proteins for certain organism.
