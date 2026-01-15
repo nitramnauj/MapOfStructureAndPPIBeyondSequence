@@ -1,7 +1,9 @@
 import pandas as pd
 
+organism = 'human'
+
 # Leer los archivos CSV
-degree_df = pd.read_csv('degreeByNode.csv')
+degree_df = pd.read_csv('degreeByNode_'+organism+'.csv')
 biogrid_df = pd.read_csv('biogrid_by_uniprot.csv')
 
 print(f"Items en degreeByNode.csv: {len(degree_df)}")
@@ -17,7 +19,7 @@ print(f"Items after merge: {len(merged_df)}")
 merged_df = merged_df.sort_values("Grado",ascending=False)
 merged_df = merged_df.reset_index(drop=True)
 
-output_file = 'degreeByNode_with_biogrid.csv'
+output_file = 'degreeByNode_with_biogrid_'+organism+'.csv'
 merged_df.to_csv(output_file, index=False)
 
 print(f"\nFile saved as: {output_file}")
