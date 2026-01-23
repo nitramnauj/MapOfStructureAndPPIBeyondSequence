@@ -90,6 +90,11 @@ Number of used vectors: 4
 Value of the final sum: 265.0283
 ```
 
+This means that chain D00 interacts with chain A00, forming a subunit "DA". Then, it will interact with chain B, to form a DAB subunit, etc.<br />
+The reported angle in each step is the angle between the chain and the previous subunit.<br />
+The length of the trajectory is the number of steps needed to includ all possible chainds, wheres the number of used vectors is the number of chains that could be included to build the complex.<br />
+The value of the final sum is the length of the sum vector after all the building steps.
+
 ## 📝 Notes
 
 - Ensure all required input files (e.g., organism lists, CATH list, BioGRID data) are in the working directory.
