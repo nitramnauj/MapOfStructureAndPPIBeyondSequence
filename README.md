@@ -3,6 +3,35 @@
 This repository contains Python scripts to reproduce the cosine similarity network analysis described in the associated study.  
 All random selections are fixed with a random seed (`42`) to ensure reproducibility.
 
+DATA PREPARATION
+├── sampleAngles.py: Pairwise angle calculations
+├── c1_sampler.py: Random sampling
+└── c2_generator-v4.py: Synthetic vector generation
+
+NETWORK CONSTRUCTION
+├── fasterNetworker.py: Core parallelism detection
+├── atLeastOne.py: Filter vectors with parallels
+└── c4_angleNhistoCalculator.py: Histogram generation
+
+NETWORK ANALYSIS
+├── findGCC.py: Giant component extraction
+├── degreeCounter.py: Degree distribution
+├── multiple.py: Model fitting
+└── orgCounter.py: Organism-specific stats
+
+VISUALIZATION
+├── orgColorGCC.py: Species-based coloring
+└── classColor.py: CATH-based coloring
+
+EXTERNAL DATA
+├── catherV3.py: CATH classification
+├── searchBioGrid.py: BioGRID integration
+└── degreeByNodeByOrg.py: Combined analysis
+
+COMPLEX ANALYSIS
+├── complexParallelis.py: Intra-complex parallels
+└── complexBuilder_v6.py: Assembly simulation
+
 ## 📁 Data Format
 
 The scripts operate on `.csv` files formatted as follows:
