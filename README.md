@@ -3,6 +3,9 @@
 This repository contains Python scripts to reproduce the cosine similarity network analysis described in the associated study.  
 All random selections are fixed with a random seed (`42`) to ensure reproducibility.
 
+## 🗃️ Key Modules Overview
+
+```
 DATA PREPARATION
 ├── sampleAngles.py: Pairwise angle calculations
 ├── c1_sampler.py: Random sampling
@@ -31,6 +34,7 @@ EXTERNAL DATA
 COMPLEX ANALYSIS
 ├── complexParallelis.py: Intra-complex parallels
 └── complexBuilder_v6.py: Assembly simulation
+```
 
 ## 📁 Data Format
 
@@ -51,57 +55,57 @@ Where:
 
 ## 🧬🖥️ Usage
 
-### 1. Compute Angles Between Vectors
+### 1. Compute Angles Between Vectors ⚔️
 Run `sampleAngles.py` to calculate angles between pairs of vectors in a given CSV file.  
 - Modify `input_name` to point to your file (default: `"d7NoLatN0.csv"`).  
 - Adjust `sample_size` to set the number of angle pairs to compute.  
 - Outputs are saved in the `Angles/` directory as `<input_file_name>_angulos_n.csv`.
 
-### 2. Generate Random Samples
+### 2. Generate Random Samples 🦠
 Run `c1_sampler.py` to create `S` random samples of size `M` from an input file.  
 - Edit the `files` list to specify input files (without extensions).  
 - Set `M` (sample size) and `S` (number of samples).  
 - Outputs include sample files and corresponding statistics (mean and standard deviation for each RCC).
 
-### 3. Generate Synthetic Vectors
+### 3. Generate Synthetic Vectors 👾
 Run `c2_generator-v4.py` to produce synthetic vectors based on RCC distributions.  
 - Modify the `averages` list to select input files.  
 - Adjust `M` and `S` as needed.  
 - Uses a global `curves` file to inform the distribution.
 This will take some time.
 
-### 4. Calculate Angle Distributions
+### 4. Calculate Angle Distributions 📊
 Run `c4_angleNhistoCalculator.py` and follow prompts (e.g., enter `"d7NoLat,Random"` or `"d7NoLat,Synthetic"`).  
 - Generates angle histograms and outputs parallel pairs to `pars_name.csv`.
 This will take some time.
 
-### 5. Find Parallel Vectors
+### 5. Find Parallel Vectors 🧠
 Run `atLeastOne.py` to identify vectors with at least one parallel partner.  
 - Set `input_file`, `output_file`, and angular threshold (`angle`).  
 Run `fasterNetworker.py` to list all parallel pairs (edges) as `edges_<input_file>.txt`.
 This will take some time.
 
-### 6. Visualize Networks
+### 6. Visualize Networks 🌃
 Run `orgColorGCC.py` to draw the network, coloring nodes by species using provided organism PDB lists.  
 Run `classColor.py` to color edges by CATH class, producing `edges_<input_file>_classes.csv` and `<input_file>_plot.png`.
 
-### 7. Analyze Network Properties
+### 7. Analyze Network Properties 🔬
 - **Giant Connected Component:** Use `findGCC.py` to extract GCC edges into `GCC_<input_file>.csv`.  
 - **Node Degrees:** Use `degreeCounter.py` to compute degree distribution.  
 - **Model Fitting:** Use `multiple.py` to fit exponential/power-law models to the degree distribution.  
 - **Organism-Specific Analysis:** Use `orgCounter.py` to output `degreeByNode_<organism>.csv`.  
 - **CATH Classification:** Use `catherV3.py` with `cath-domain-list.txt` and edge files.
 
-### 8. Integrate BioGRID Data
+### 8. Integrate BioGRID Data 🖥️
 Run `searchBioGrid.py` to count interactors per UniProt entry in BioGRID, saving results to `biogrid_by_uniprot.csv`.  
 Then, run `degreeByNodeByOrg.py` to combine degree and BioGRID data per organism.
 
-### 9. Complex-Level Analysis
+### 9. Complex-Level Analysis 🤖
 Run `complexParallelis.py` to analyze parallelism between chains within complexes (input: `d7NoLat_benchmark-pdb1.txt`).  
 - Outputs the average number of parallel pairs per complex.  
 - Saves per-complex vector data in the `PerComplex/` directory.
 
-### 10. Simulate Complex Assembly
+### 10. Simulate Complex Assembly 🏗️
 Run `complexBuilder_v6.py` to simulate complex assembly via stepwise vector addition.  This will take some time.
 - Reads all files in `PerComplex/`.  
 - Outputs assembly trajectories, e.g.:
