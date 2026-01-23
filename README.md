@@ -86,3 +86,26 @@ This script takes the file _d7NoLat_benchmark-pdb1.txt_ file as input and create
 The script will output the number of parallel pairs found for all the chains in a complex, and the arithmetic mean for all the complexes in the input file.<br />
 In the _PerComplex_ directory, the script will print the vectors separated by complex.
 
+To "build" a complex using only the RCC collections from its chains, just runt _complexBuilder_v6.py_.<br />
+This script will read all the files in the _PerComplex_ directory.<br />
+For each complex, it will take a random vector as a seed and it will try to find a semi-parallel vector to sum it to the seed.<br />
+This sum will build a "trajectory of interactions".<br />
+The output files will be in the _Percomplex_ directory, and its final lines look as follows:
+
+Found trajectory:<br />
+  Step 1: 2qhl_D00<br />
+  Step 2: 2qhl_A00 (angle: 4.70°)<br />
+  Step 3: 2qhl_B00 (angle: 2.31°)<br />
+  Step 4: 2qhl_E00 (angle: 2.10°)<br />
+
+Length of the trajectory: 4 steps<br />
+Used vectors: ['2qhl_D00', '2qhl_A00', '2qhl_B00', '2qhl_E00']<br />
+Number of used vectors: 4<br />
+Value of the final sum: 265.0283
+
+Note: Only 4 of 5 vectors could be included.
+
+This means that chain D00 interacts with chain A00, forming a subunit "DA". Then, it will interact with chain B, to form a DAB subunit, etc.<br />
+The reported angle in each step is the angle between the chain and the previous subunit.<br />
+The length of the trajectory is the number of steps needed to includ all possible chainds, wheres the number of used vectors is the number of chains that could be included to build the complex.<br />
+The value of the final sum is the length of the sum vector after all the building steps.
