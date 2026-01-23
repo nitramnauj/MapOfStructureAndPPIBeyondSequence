@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import combinations
 import matplotlib.pyplot as plt
+import os
 
 listOfVectors = 'd7NoLat_benchmark-pdb1.txt'
 
@@ -25,9 +26,14 @@ with open(listOfVectors) as entrada:
 
 print(len(complejos))
 
+# Revisar si existe el directorio de salida
+dir_name = "PerComplex"
+if not os.path.exists(dir_name):
+    os.makedirs(dir_name)
+
 for cx in complejos:
     if len(complejos[cx]) > 1:
-        salida = open('PorComplejo/'+cx+'.csv','w')
+        salida = open('PerComplex/'+cx+'.csv','w')
         for ch in complejos[cx]:
             #print(cx,ch,complejos[cx][ch])
             to_print = cx+'_'+ch
