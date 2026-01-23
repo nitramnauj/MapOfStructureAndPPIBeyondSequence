@@ -80,3 +80,9 @@ This will read the _BIOGRID-ALL-5.0.251.mitab.txt_ file and count how many inter
 To calculate the degree distribution by organism, with consideration of the BioGrid counts, just run _degreeByNodeByOrg.py_.<br />
 This script will take the degreeByNode_\<organism\>.csv file and the _biogrid_by_uniprot.csv_ as inputs.<br />
 This will output the nodes, degree and uniprot for the proteins for certain organism.
+
+To analyze the parallelism between the chains in a complex, just run _complexParallelis.py_.<br />
+This script takes the file _d7NoLat_benchmark-pdb1.txt_ file as input and creates a _PerComplex_ directory.<br />
+The script will output the number of parallel pairs found for all the chains in a complex, and the arithmetic mean for all the complexes in the input file.<br />
+In the _PerComplex_ directory, the script will print the vectors separated by complex.
+
