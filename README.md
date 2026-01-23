@@ -20,7 +20,7 @@ Where:
 - **`RCC1` to `RCC26`** — 26 integer values representing RCC collections.
 - **`C`** — A string tag for the vector (e.g., CATH class for the protein domain).
 
-## 🚀 Usage
+## 🧬🖥️ Usage
 
 ### 1. Compute Angles Between Vectors
 Run `sampleAngles.py` to calculate angles between pairs of vectors in a given CSV file.  
@@ -39,15 +39,18 @@ Run `c2_generator-v4.py` to produce synthetic vectors based on RCC distributions
 - Modify the `averages` list to select input files.  
 - Adjust `M` and `S` as needed.  
 - Uses a global `curves` file to inform the distribution.
+This will take some time.
 
 ### 4. Calculate Angle Distributions
 Run `c4_angleNhistoCalculator.py` and follow prompts (e.g., enter `"d7NoLat,Random"` or `"d7NoLat,Synthetic"`).  
 - Generates angle histograms and outputs parallel pairs to `pars_name.csv`.
+This will take some time.
 
 ### 5. Find Parallel Vectors
 Run `atLeastOne.py` to identify vectors with at least one parallel partner.  
 - Set `input_file`, `output_file`, and angular threshold (`angle`).  
 Run `fasterNetworker.py` to list all parallel pairs (edges) as `edges_<input_file>.txt`.
+This will take some time.
 
 ### 6. Visualize Networks
 Run `orgColorGCC.py` to draw the network, coloring nodes by species using provided organism PDB lists.  
@@ -70,7 +73,7 @@ Run `complexParallelis.py` to analyze parallelism between chains within complexe
 - Saves per-complex vector data in the `PerComplex/` directory.
 
 ### 10. Simulate Complex Assembly
-Run `complexBuilder_v6.py` to simulate complex assembly via stepwise vector addition.  
+Run `complexBuilder_v6.py` to simulate complex assembly via stepwise vector addition.  This will take some time.
 - Reads all files in `PerComplex/`.  
 - Outputs assembly trajectories, e.g.:
 
@@ -92,3 +95,127 @@ Value of the final sum: 265.0283
 - Ensure all required input files (e.g., organism lists, CATH list, BioGRID data) are in the working directory.
 - File paths and parameters (e.g., sample sizes, thresholds) are configured within each script.
 - Output directories (e.g., `Angles/`, `PerComplex/`) are created automatically if they do not exist.
+
+# 🔄 Example Workflow
+
+This example walks through the main analysis pipeline from raw data to network visualization and complex assembly.
+
+## **Step 1: Prepare Your Data**
+Place your input CSV file (e.g., `d7NoLatN0.csv`) in the working directory. Ensure it follows the required format:
+- 26 RCC columns
+- Final column `C` for class/tag
+
+## **Step 2: Calculate Angles Between Vectors**
+```bash
+# Sample 10^11 random pairs from the dataset
+python sampleAngles.py
+```
+*Output:* Creates `Angles/angles_d7NoLatN0_11.csv`
+
+## **Step 3: Generate Random Samples & Synthetic Counterparts**
+```bash
+# Create 10 samples of 1000 vectors each
+python c1_sampler.py
+# Output: sample_d7NoLatN0_1.csv ... d7NoLatN0_sample_10.csv
+# Output: average_d7NoLatN0_1.csv ... average_d7NoLatN0_10.csv
+
+# Generate synthetic vectors matching each sample's statistics
+python c2_generator-v4.py
+# Output: synthetic_d7NoLatN0_1.csv ... synthetic_d7NoLatN0_10.csv
+```
+
+## **Step 4: Build Parallelism Network**
+```bash
+# Find all parallel pairs (angle < 5 degrees)
+python fasterNetworker.py
+# Output: edges_d7NoLatN0.txt
+
+# Visualize with organism-based coloring
+python orgColorGCC.py
+# Output: Network plot (visual)
+```
+
+## **Step 5: Analyze Network Properties**
+```bash
+# Extract the Giant Connected Component
+python findGCC.py
+# Output: GCC_d7NoLatN0.csv
+
+# Calculate degree distribution
+python degreeCounter.py
+# Output: degree_distribution_d7NoLatN0.csv
+
+# Fit power-law and exponential models
+python multiple.py
+# Output: Model coefficients and fit statistics
+```
+
+## **Step 6: Integrate External Data**
+```bash
+# Add CATH classification to nodes
+python catherV3.py
+# Output: edges_d7NoLatN0_cath.csv
+
+# Count BioGRID interactions for each protein
+python searchBioGrid.py
+# Output: biogrid_by_uniprot.csv
+
+# Combine degree with organism information
+python orgCounter.py
+# Output: degreeByNode_human.csv, degreeByNode_musMusculus.csv, etc.
+
+# Cross-reference with BioGRID
+python degreeByNodeByOrg.py
+# Output: enhanced_degree_by_organism.csv
+```
+
+## **Step 7: Complex-Level Analysis**
+```bash
+# Analyze parallelism within protein complexes
+python complexParallelis.py
+# Output: Average parallel pairs per complex
+# Output: PerComplex/ directory with individual complex files
+
+# Simulate complex assembly via vector addition
+python complexBuilder_v6.py
+# Output: Assembly trajectories for each complex
+# Example output for complex 2qhl:
+"""
+Found trajectory:
+  Step 1: 2qhl_D00
+  Step 2: 2qhl_A00 (angle: 4.70°)
+  Step 3: 2qhl_B00 (angle: 2.31°)
+  Step 4: 2qhl_E00 (angle: 2.10°)
+Length of the trajectory: 4 steps
+Used vectors: 4 of 5
+Final vector length: 265.0283
+"""
+```
+
+## **Minimal Pipeline**
+For a quick test of the main functionality:
+```bash
+# 1. Generate network from your data
+python fasterNetworker.py
+
+# 2. Extract and visualize the GCC
+python findGCC.py
+python orgColorGCC.py
+
+# 3. Calculate basic statistics
+python degreeCounter.py
+python catherV3.py
+```
+
+## **Troubleshooting Tips**
+1. **File not found errors**: Ensure all input files are in the working directory
+2. **Memory issues**: Reduce sample sizes in `c1_sampler.py` (set smaller `M` value)
+3. **Slow execution**: For large datasets, consider reducing the angle threshold in `fasterNetworker.py`
+4. **Missing dependencies**: Install required packages: `pip install numpy matplotlib networkx`
+
+## **Typical Runtime**
+- Small dataset (~1,000 vectors): Few seconds
+- Medium dataset (~10,000 vectors): 10-20 minutes
+- Large dataset (~100,000 vectors): Several hours or days
+
+This workflow reproduces the main analyses from the study, from basic parallelism detection to complex biological interpretation.
