@@ -320,7 +320,7 @@ def main(archivo_csv):
 
 
 # Path to the directory where the CSV files are located
-directorio = './PorComplejo'  # Adjust if your files are in another location
+directorio = './PerComplex'  # Adjust if your files are in another location
 todos_los_archivos = os.listdir(directorio)
 
 # Filter those that end in ".csv"
