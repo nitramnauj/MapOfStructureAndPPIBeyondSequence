@@ -69,7 +69,7 @@ This will output a GCC_\<input_file\>.csv file, with only the edges of the GCC.
 To know the number of edges for each node (its degree), just run _degreeCounter.py_.<br />
 This will output a file with the list of degrees, and how many nodes have such degree.<br />
 To fit to the degree distribution gotten with the previous script some exponential models, run _multiple.py_.<br />
-This will output the coefficients for the three models described in the main paper.
+This will output the coefficients for the three models described in the main paper (power-law included).
 
 To know the degree distribution by organism, just run _orgCounter.py_.<br />
 This script takes the edges_\<input_file\>.txt file and an organism list, such as _human_pdbs.txt_, to print for each node its degree and its Uniprot ID in a degreeByNode_\<organism\>.csv file.
