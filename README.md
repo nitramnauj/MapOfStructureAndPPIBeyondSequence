@@ -1,111 +1,94 @@
-# MapOfStructureAndPPIBeyondSequence
-Codes to reproduce cosine similarity network analysis.<br />
+# Map of Structure and PPI Beyond Sequence
 
-All random choosing has been fixed with a random seed (42) to ensure reproducibility.
+This repository contains Python scripts to reproduce the cosine similarity network analysis described in the associated study.  
+All random selections are fixed with a random seed (`42`) to ensure reproducibility.
 
-These codes work with .csv files formated as follows:
+## 📁 Data Format
 
-PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14,RCC15,RCC16,RCC17,RCC18,RCC19,RCC20,RCC21,RCC22,RCC23,RCC24,RCC25,RCC26,C<br />
-101mA00,2,1,7,0,13,0,5,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
-102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1<br />
-102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
+The scripts operate on `.csv` files formatted as follows:
 
-Where:<br />
-\<PDBID\> is the string vector name, or the PDB chain for PDB structures.<br />
-\<RCC1\>, \<RCC2\>, ..., \<RCC26\> are 26 numbers (integers for rcc collections).<br />
-\<C\> is a string tag for the vector, or the CATH class for the corresponding protein domain.<br />
+```
+PDBID,RCC1,RCC2,...,RCC26,C
+101mA00,2,1,7,0,13,0,5,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1
+102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1
+102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1
+```
 
-**Angles between vectors in a file**<br />
-To get the angles between a sample of posible pairs of vectors in a \<input_file_name\>.csv file, just run _sampleAngles.py_.<br />
-To use another file, change **input_name** variable to the corresponding file name. Currently is "d7NoLatN0.csv".<br />
-To change the sample size, change the values inside **sample_size** list. Currently is 11, to calculate 10^11 pairs.<br />
-This will create (if not already exists) an output directory named Angles, where the output file is named \<input_file_name\>_angulos_n.csv, where **n** is the value in **sample_size**.
+Where:
 
-To generate a number **S** of different samples for a \<input_file_name\> file, each one with **M** vectors (where **M**<**N**, **N** the number of vectors), just run _c1_sampler.py_.<br />
-To get the samples for different input files, change **files** list, without extension.<br />
-To get samples of different size, change **M** value.<br />
-To change the number of samples, change **S** value.<br />
-This will create **S** output files with **M** vectors each one. Also, it will create **S** output files with the average and standard deviation values for each one of the 26 \<RCC\> values.
+- **`PDBID`** — Identifier for the vector (e.g., PDB chain for protein structures).
+- **`RCC1` to `RCC26`** — 26 integer values representing RCC collections.
+- **`C`** — A string tag for the vector (e.g., CATH class for the protein domain).
 
-To generate a **M** synthetic vectors for each sample, just run _c2_generator-v4.py_.<br />
-This code takes the distribution of the 26 \<RCC\> values, and the sum of the corresponding 26 \<RCC\> values for a given vector in a sample, to generate a new synthetic vector.<br />
-It also takes the corresponding _curves_ file into account, which describes the global distribution of vectors, not only the current sample.<br />
-To get the samples for different input files, change **averages** list, without extension.<br />
-To get samples of different size, change **M** value.<br />
-To change the number of samples, change **S** value.<br />
-This will create **S** output files with **M** synthetic vectors each one.
+## 🚀 Usage
 
-To calculate the angles between all possible pairs inside all samples, run _c4_angleNhistoCalculator.py_ and input "d7NoLat,Random" or "d7NoLat,Synthetic", or the corresponding case you are testing.<br />
-This script doesn't save the angles, instead outputs a histogram of the values.<br />
-This script outputs a file, _pars_name.csv_, with the pairs of parallel angles in a given sample.
+### 1. Compute Angles Between Vectors
+Run `sampleAngles.py` to calculate angles between pairs of vectors in a given CSV file.  
+- Modify `input_name` to point to your file (default: `"d7NoLatN0.csv"`).  
+- Adjust `sample_size` to set the number of angle pairs to compute.  
+- Outputs are saved in the `Angles/` directory as `<input_file_name>_angulos_n.csv`.
 
-To find the vectors with at least one parallel, just run _atLeastOne.py_.<br />
-This script will output a file where each line is a vector which is parallel to another one in the input file.<br />
-To change the input and output files, change the **input_file** and **output_file** values.<br />
-To change the angular threshold value to consider a vector "parallel", change **angle** value.
+### 2. Generate Random Samples
+Run `c1_sampler.py` to create `S` random samples of size `M` from an input file.  
+- Edit the `files` list to specify input files (without extensions).  
+- Set `M` (sample size) and `S` (number of samples).  
+- Outputs include sample files and corresponding statistics (mean and standard deviation for each RCC).
 
-To find the pair of parallel vectors with the thershold used in the previous script, just run _fasterNetworker.py_.<br />
-This script will output a file named edges_<input_file>.txt, where each line is an edge in a network of parallelism.<br />
-It could be run with whichever input file formated as follows:
+### 3. Generate Synthetic Vectors
+Run `c2_generator-v4.py` to produce synthetic vectors based on RCC distributions.  
+- Modify the `averages` list to select input files.  
+- Adjust `M` and `S` as needed.  
+- Uses a global `curves` file to inform the distribution.
 
-PDBID,RCC1,RCC2,RCC3,RCC4,RCC5,RCC6,RCC7,RCC8,RCC9,RCC10,RCC11,RCC12,RCC13,RCC14,RCC15,RCC16,RCC17,RCC18,RCC19,RCC20,RCC21,RCC22,RCC23,RCC24,RCC25,RCC26,C<br />
-101mA00,2,1,7,0,13,0,5,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
-102lA00,9,6,10,0,5,2,19,5,0,0,0,0,1,13,85,0,0,0,0,0,0,0,0,0,0,2,1<br />
-102mA00,2,1,7,0,14,0,7,8,0,2,0,0,0,4,103,0,0,0,0,0,0,0,0,0,0,2,1<br />
+### 4. Calculate Angle Distributions
+Run `c4_angleNhistoCalculator.py` and follow prompts (e.g., enter `"d7NoLat,Random"` or `"d7NoLat,Synthetic"`).  
+- Generates angle histograms and outputs parallel pairs to `pars_name.csv`.
 
-To draw the network gotten with the previous script, just run _orgColorGCC.py_.<br />
-This will use _human_pbds.txt_, _musMusculus_pdbs.txt_ and _sCerevisiae_pdbs.txt_ as dictionaries to color the nodes with color depending of the species.<br />
+### 5. Find Parallel Vectors
+Run `atLeastOne.py` to identify vectors with at least one parallel partner.  
+- Set `input_file`, `output_file`, and angular threshold (`angle`).  
+Run `fasterNetworker.py` to list all parallel pairs (edges) as `edges_<input_file>.txt`.
 
-To know the number of different Classes, Architectures, Topologies and Homologous Superfamilies, just run _catherV3.py_.<br />
-This script uses _cath-domain-list.txt_ and edges_<input_file>.txt to label each PDBID with the corresponding CATH domain.
+### 6. Visualize Networks
+Run `orgColorGCC.py` to draw the network, coloring nodes by species using provided organism PDB lists.  
+Run `classColor.py` to color edges by CATH class, producing `edges_<input_file>_classes.csv` and `<input_file>_plot.png`.
 
-To draw the network with color by class, just run _classColor.py_.<br />
-This script uses edges_<input_file>.txt to label each pair of nodes with their corresponding class as in CATH and colors them.<br />
-The output is a file with the edges and the classes for them in a edges_<input_file>_classes.csv file, and a \<input_file\>_plot.png file.
+### 7. Analyze Network Properties
+- **Giant Connected Component:** Use `findGCC.py` to extract GCC edges into `GCC_<input_file>.csv`.  
+- **Node Degrees:** Use `degreeCounter.py` to compute degree distribution.  
+- **Model Fitting:** Use `multiple.py` to fit exponential/power-law models to the degree distribution.  
+- **Organism-Specific Analysis:** Use `orgCounter.py` to output `degreeByNode_<organism>.csv`.  
+- **CATH Classification:** Use `catherV3.py` with `cath-domain-list.txt` and edge files.
 
-To find the Giant Connected Component (GCC), just runt _findGCC.py_.<br />
-This will output a GCC_\<input_file\>.csv file, with only the edges of the GCC.
+### 8. Integrate BioGRID Data
+Run `searchBioGrid.py` to count interactors per UniProt entry in BioGRID, saving results to `biogrid_by_uniprot.csv`.  
+Then, run `degreeByNodeByOrg.py` to combine degree and BioGRID data per organism.
 
-To know the number of edges for each node (its degree), just run _degreeCounter.py_.<br />
-This will output a file with the list of degrees, and how many nodes have such degree.<br />
-To fit to the degree distribution gotten with the previous script some exponential models, run _multiple.py_.<br />
-This will output the coefficients for the three models described in the main paper (power-law included).
+### 9. Complex-Level Analysis
+Run `complexParallelis.py` to analyze parallelism between chains within complexes (input: `d7NoLat_benchmark-pdb1.txt`).  
+- Outputs the average number of parallel pairs per complex.  
+- Saves per-complex vector data in the `PerComplex/` directory.
 
-To know the degree distribution by organism, just run _orgCounter.py_.<br />
-This script takes the edges_\<input_file\>.txt file and an organism list, such as _human_pdbs.txt_, to print for each node its degree and its Uniprot ID in a degreeByNode_\<organism\>.csv file.
+### 10. Simulate Complex Assembly
+Run `complexBuilder_v6.py` to simulate complex assembly via stepwise vector addition.  
+- Reads all files in `PerComplex/`.  
+- Outputs assembly trajectories, e.g.:
 
-To know the BioGrid counts for each protein, just run the _searchBioGrid.py_ script.<br />
-This will read the _BIOGRID-ALL-5.0.251.mitab.txt_ file and count how many interactors has certain uniprot. Then it will print them in an output file, _biogrid_by_uniprot.csv_.
+```
+Found trajectory:
+  Step 1: 2qhl_D00
+  Step 2: 2qhl_A00 (angle: 4.70°)
+  Step 3: 2qhl_B00 (angle: 2.31°)
+  Step 4: 2qhl_E00 (angle: 2.10°)
 
-To calculate the degree distribution by organism, with consideration of the BioGrid counts, just run _degreeByNodeByOrg.py_.<br />
-This script will take the degreeByNode_\<organism\>.csv file and the _biogrid_by_uniprot.csv_ as inputs.<br />
-This will output the nodes, degree and uniprot for the proteins for certain organism.
-
-To analyze the parallelism between the chains in a complex, just run _complexParallelis.py_.<br />
-This script takes the file _d7NoLat_benchmark-pdb1.txt_ file as input and creates a _PerComplex_ directory.<br />
-The script will output the number of parallel pairs found for all the chains in a complex, and the arithmetic mean for all the complexes in the input file.<br />
-In the _PerComplex_ directory, the script will print the vectors separated by complex.
-
-To "build" a complex using only the RCC collections from its chains, just runt _complexBuilder_v6.py_.<br />
-This script will read all the files in the _PerComplex_ directory.<br />
-For each complex, it will take a random vector as a seed and it will try to find a semi-parallel vector to sum it to the seed.<br />
-This sum will build a "trajectory of interactions".<br />
-The output files will be in the _Percomplex_ directory, and its final lines look as follows:
-
-Found trajectory:<br />
-  Step 1: 2qhl_D00<br />
-  Step 2: 2qhl_A00 (angle: 4.70°)<br />
-  Step 3: 2qhl_B00 (angle: 2.31°)<br />
-  Step 4: 2qhl_E00 (angle: 2.10°)<br />
-
-Length of the trajectory: 4 steps<br />
-Used vectors: ['2qhl_D00', '2qhl_A00', '2qhl_B00', '2qhl_E00']<br />
-Number of used vectors: 4<br />
+Length of the trajectory: 4 steps
+Used vectors: ['2qhl_D00', '2qhl_A00', '2qhl_B00', '2qhl_E00']
+Number of used vectors: 4
 Value of the final sum: 265.0283
+```
 
-Note: Only 4 of 5 vectors could be included.
+## 📝 Notes
 
-This means that chain D00 interacts with chain A00, forming a subunit "DA". Then, it will interact with chain B, to form a DAB subunit, etc.<br />
-The reported angle in each step is the angle between the chain and the previous subunit.<br />
-The length of the trajectory is the number of steps needed to includ all possible chainds, wheres the number of used vectors is the number of chains that could be included to build the complex.<br />
-The value of the final sum is the length of the sum vector after all the building steps.
+- Ensure all required input files (e.g., organism lists, CATH list, BioGRID data) are in the working directory.
+- File paths and parameters (e.g., sample sizes, thresholds) are configured within each script.
+- Output directories (e.g., `Angles/`, `PerComplex/`) are created automatically if they do not exist.
