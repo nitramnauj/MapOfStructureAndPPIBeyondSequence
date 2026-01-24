@@ -1,6 +1,6 @@
 # Map of Structure and PPI Beyond Sequence
 
-This repository contains Python scripts to reproduce the cosine similarity network analysis described in the associated study.  
+This repository contains Python scripts to reproduce the cosine similarity network analysis described in the associated study: "Mapping protein structural packing similarity to protein-protein interactions beyond sequence"
 All random selections are fixed with a random seed (`42`) to ensure reproducibility.
 
 ## 🗃️ Key Modules Overview
